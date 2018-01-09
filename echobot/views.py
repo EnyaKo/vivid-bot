@@ -13,7 +13,12 @@ from .vividbot import VividBot
 line_bot_api = LineBotApi(settings.LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(settings.LINE_CHANNEL_SECRET)
 
-vividbot = VividBot()
+vividbot = VividBot(
+    static_root=settings.STATIC_ROOT,
+    word2vec_dic_path='med250_ptt.model.bin',
+    jieba_dic_path='data/dict.txt.big',
+    stopword_path='data/stop_words.txt'
+)
 
 
 @handler.add(MessageEvent, message=TextMessage)
